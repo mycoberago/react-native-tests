@@ -6,38 +6,49 @@ import {
   Text,
   StyleSheet,
   Image,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 
 const MarketItem = (props) => {
-  let { item } = props;
+  let { item,navigation } = props;
+
+  const itemPress = () => {
+    navigation.navigate('MarketItemDetails',{
+        item: item
+    })
+  }
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={itemPress}>
       <Image
         source={{uri: item.item.images[0]}}
         style={styles.image}
       />
       <Text style={styles.price}>{"$" + (item.item.price /100).toFixed(2)}</Text>
-    </View>
+    </TouchableOpacity>
+
   )
 }
 
 const styles = StyleSheet.create({
+  parent_container: {
+    flex: 1
+  },
   container: {
     flex: 1,
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: 'grey',
     margin: deviceHeight * .005
   },
   image: {
-    width: deviceWidth * .80,
-    height: deviceHeight * .25
+    height: deviceHeight * .20,
+    resizeMode: 'contain'
   },
   price: {
     margin: deviceWidth * .025,

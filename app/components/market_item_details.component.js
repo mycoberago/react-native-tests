@@ -45,6 +45,7 @@ const MarketItemDetailsComponent = (props) => {
           raised
           title="Message User"
           containerStyle={styles.buttonContainer}
+          onPress={ () => navigation.navigate('MessageUser',{item})}
         />
 
       </SafeAreaView>

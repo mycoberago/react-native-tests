@@ -3,6 +3,7 @@ import HomeScreen from '../app/screens/home.screen';
 import SplashScreen from '../app/screens/splash.screen';
 import HomeComponent from '../app/components/home.component';
 import MarketItemDetailsComponent from '../app/components/market_item_details.component';
+import MessageUserComponent from '../app/components/message_user.component';
 
 const Splash = {
   screen: SplashScreen,
@@ -14,13 +15,26 @@ const Splash = {
 const Home = {
   screen: HomeScreen,
   navigationOptions: {
-    header: null
+    header: null,
+    gesturesEnabled: false
   }
 }
 
 const MarketItemDetails = {
+  navigationOptions: {
+    headerBackTitle: ""
+  },
   screen: MarketItemDetailsComponent
 }
+
+
+const MessageUser = {
+  navigationOptions: {
+    headerBackTitle: ""
+  },
+  screen: MessageUserComponent
+}
+
 
 const initialRoute = {
   initialRoute: Splash
@@ -29,7 +43,8 @@ const initialRoute = {
 const AppNavigator = createStackNavigator({
   Splash: Splash,
   Home: Home,
-  MarketItemDetails: MarketItemDetails
+  MarketItemDetails: MarketItemDetails,
+  MessageUser: MessageUser
 }, initialRoute)
 
 const AppContainer = createAppContainer(AppNavigator);

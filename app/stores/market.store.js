@@ -6,5 +6,6 @@ export default class MarketStore {
   }
 
   @observable marketPosts = [];
+  @observable messages = [];
 
 }

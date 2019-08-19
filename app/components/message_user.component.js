@@ -6,9 +6,12 @@ import {
   Text,
   StyleSheet,
   Image,
+  ImageBackground,
   Dimensions,
   SafeAreaView
 } from 'react-native';
+import { Input, Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
@@ -44,17 +47,48 @@ const MessageUserComponent = (props) => {
           {/* --------HEADER RIGHT--------- */}
 
           <View style={styles.headerRight}>
-            <Image
+
+            <ImageBackground
               source={{uri: item.images[0]}}
               style={styles.list_image}
-            />
+            >
+              <View style={styles.headerPrice}>
+                <Text
+                  style={styles.priceText}
+                >{"$" + (item.price / 100).toFixed(2)}</Text>
+              </View>
+            </ImageBackground>
+
           </View>
 
         </View>
 
         {/* -------- BODY --------- */}
         <View style={styles.body}>
-          <Text>Lava You</Text>
+
+          <Input
+            placeholder="Enter Message"
+            inputStyle={styles.inputStyle}
+            inputContainerStyle={styles.inputContainerStyle}
+            multiline={true}
+            underlineColorAndroid='rgba(0,0,0,0)'
+          />
+
+          <Button
+            raised
+            title="Send"
+            icon={
+              <Icon
+                name="send"
+                size={15}
+                color="white"
+              />
+            }
+            iconRight={true}
+            containerStyle={styles.buttonContainerStyle}
+            titleStyle={styles.buttonTitleStyle}
+          />
+
         </View>
 
     </View>
@@ -104,7 +138,39 @@ const styles = StyleSheet.create({
     width: deviceWidth * .18,
     borderRadius: deviceWidth * .01
   },
+  headerPrice: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(46, 204, 113, 0.85)',
+    padding: deviceWidth * .005,
+    borderRadius: deviceWidth * .005
+  },
+  priceText: {
+    color: 'white',
+    fontWeight: 'bold'
+  },
   body: {
     flex: 9
   },
+  inputStyle: {
+    height: deviceHeight * .25,
+    width: deviceWidth,
+    padding: deviceWidth * .015,
+    margin: deviceWidth * .025,
+    borderRadius: deviceWidth * .015,
+    borderWidth: 1,
+    borderColor: 'grey',
+  },
+  inputContainerStyle: {
+    borderBottomWidth: 0
+  },
+  buttonContainerStyle: {
+    marginHorizontal: deviceWidth * .03,
+    marginTop: deviceWidth * .025
+  },
+  buttonTitleStyle: {
+      marginRight: deviceWidth * .03,
+      fontWeight: 'bold'
+  }
 });

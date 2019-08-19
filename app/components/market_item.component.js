@@ -53,10 +53,11 @@ const styles = StyleSheet.create({
   price: {
     margin: deviceWidth * .025,
     alignSelf: 'flex-start',
-    padding: deviceWidth * .025,
+    padding: deviceWidth * .015,
     overflow: 'hidden',
     color: 'white',
-    backgroundColor: 'green',
+    fontWeight: 'bold',
+    backgroundColor: 'rgba(46, 204, 113, 1)',
     borderRadius: deviceWidth * .012
   }
 });

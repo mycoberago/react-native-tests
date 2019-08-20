@@ -10,8 +10,8 @@ import {
   Dimensions,
   SafeAreaView
 } from 'react-native';
-import { Input, Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input, Button, Icon } from 'react-native-elements';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 
 const deviceWidth = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
@@ -80,6 +80,7 @@ const MessageUserComponent = (props) => {
             icon={
               <Icon
                 name="send"
+                type="font-awesome"
                 size={15}
                 color="white"
               />

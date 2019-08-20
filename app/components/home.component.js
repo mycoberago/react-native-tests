@@ -7,12 +7,16 @@ import {
   StyleSheet,
   SafeAreaView,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  Dimensions
 } from 'react-native';
 import { observer } from 'mobx-react';
 import MarketItem from './market_item.component';
+import { Icon } from 'react-native-elements';
+import ImagePicker from 'react-native-image-crop-picker';
 
 var example_data = require('../example.data');
+const deviceHeight = Dimensions.get('window').height;
 
 @observer
 export default class HomeComponent extends Component {
@@ -29,6 +33,17 @@ export default class HomeComponent extends Component {
       this.setState({loading: false, data: example_data})
     },1500)
   }
+
+  getImages = () => {
+
+    ImagePicker.openPicker({
+      multiple: true
+    }).then(images => {
+      console.log(images);
+    })
+
+  }
+
   render() {
 
     let tempArr = [];
@@ -57,21 +72,35 @@ export default class HomeComponent extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <SafeAreaView>
-          <Text>I'm the HomeComponent component</Text>
+      <SafeAreaView style={styles.container}>
 
-          <FlatList
-            data={example_data.data}
-            renderItem={(data) =>
-              <MarketItem item={data} { ...this.props } />
-            }
-            keyExtractor={(item, index) => index.toString()}
-            numColumns={2}
-          />
+          <View style={styles.listContainer} >
 
-        </SafeAreaView>
-      </View>
+            <FlatList
+              data={example_data.data}
+              renderItem={(data) =>
+                <MarketItem item={data} { ...this.props } />
+              }
+              keyExtractor={(item, index) => index.toString()}
+              numColumns={2}
+            />
+
+          </View>
+
+          <View style={styles.iconView}>
+
+            <Icon
+              raised
+              size={deviceHeight * .035}
+              name="camera"
+              type="entypo"
+              containerStyle={ styles.iconContainer }
+              onPress={this.getImages}
+            />
+
+          </View>
+
+      </SafeAreaView>
     );
   }
 }
@@ -79,5 +108,18 @@ export default class HomeComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'flex-start'
   },
+  listContainer: {
+    flex: 1
+  },
+  iconView: {
+    height: deviceHeight * .08,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  iconContainer: {
+    justifyContent: 'center',
+    alignSelf: 'center'
+  }
 });

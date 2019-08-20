@@ -43,8 +43,9 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'grey',
-    margin: deviceHeight * .005
+    borderColor: 'lightgrey',
+    margin: deviceHeight * .005,
+    borderRadius: deviceWidth * .025
   },
   image: {
     height: deviceHeight * .20,
